@@ -1,0 +1,31 @@
+﻿namespace Graphic_editor
+{
+    public enum ToolType //Все элементы графредактора
+    {
+        Pencil,
+        Brush,
+        Eraser,
+        FlatBrush,
+        FunBrush,
+        Square,
+        Ellipse,
+        Triangle,
+        Circle,
+        _LineSegment,
+        Rectangle,
+        Rhombus,
+        Trapezoid,
+        Pentagon,
+        Hexagon,
+        Parallelogram,
+        Octagon,
+        Decagon,
+        Duodecagon,
+        Star,
+        EquilateralTriangle,
+        IsoscelesTriangle,
+        CurvedTriangle,
+        Heart,
+        Arrow,
+    }
+}

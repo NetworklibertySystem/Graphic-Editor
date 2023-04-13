@@ -1,0 +1,128 @@
+﻿<Window x:Class="Graphic_editor.editor.Editor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:colorPalette="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:Graphic_editor"        
+        mc:Ignorable="d"
+        Title="Monochrome" Height="800" Width="1478.4" Icon="/biohazard.ico" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+    <Window.CommandBindings>
+        <CommandBinding x:Name="NewBinding" Command="New" Executed="NewBinding_OnExecuted" />
+        <CommandBinding x:Name="OpenBinding" Command="Open" Executed="OpenBinding_OnExecuted"/>
+        <CommandBinding x:Name="SaveBinding" Command="Save" Executed="SaveBinding_OnExecuted" />
+        <CommandBinding x:Name="CloseBinding" Command="Close" Executed="CloseBinding_OnExecuted"/>
+    </Window.CommandBindings>
+    <DockPanel LastChildFill="True" Background="#FBE8D3">
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="New" Command="New" Background="#F6F7D7">
+                    <MenuItem.Icon>
+                        <Image Source="/Icons/new.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Open..." Command="Open" Background="#F6F7D7">
+                    <MenuItem.Icon>
+                        <Image Source="/Icons/open.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Save..." Command="Save" Background="#F6F7D7">
+                    <MenuItem.Icon>
+                        <Image Source="/Icons/save.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="Exit" Command="Close" InputGestureText="Alt+F4" Background="#F6F7D7">
+                    <MenuItem.Icon>
+                        <Image Source="/Icons/exit.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Undo" Click="BtnUndo_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/Icons/undoForward.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Redo" Click="BtnRedo_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/Icons/RedoBack.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator/>
+                <MenuItem x:Name="mProperties" Header="Properties" Click="MProperties_Click" >
+                    <MenuItem.Icon>
+                        <Image Source="/Icons/properties.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mAbout" Header="Info"/>
+            <Label x:Name="label1" Content="Label"/>
+        </Menu>
+
+        <ToolBarTray DockPanel.Dock="Top" Background="#5D5C61">
+            <ToolBar Background="#5D5C61">
+                <Button Command="New">
+                    <Image Width="32" Source="/Icons/add.ico"/>
+                </Button>
+                <Button Command="Open">
+                    <Image Width="44" Source="/Icons/folder.ico"/>
+                </Button>
+                <Button Command="Save">
+                    <Image Width="36" Source="/Icons/sad.ico"/>
+                </Button>
+            </ToolBar>
+            <ToolBar Margin="0,0,-23,0" Background="#5D5C61">
+                <Button x:Name="btnUndo" Click="BtnUndo_Click" IsEnabled="False">
+                    <Image Width="30" Source="/Icons/arrowBack.ico"/>
+                </Button>
+                <Button x:Name="btnRedo" Click="BtnRedo_Click" IsEnabled="False">
+                    <Image Width="30" Source="/Icons/arrowForward.ico" />
+                </Button>
+            </ToolBar>
+            <ToolBar Background="#5D5C61">
+                <Button x:Name="btnPencil" Click="BtnPencil_Click">
+                    <Image Width="30" Source="/Icons/pen.ico"/>
+                </Button>
+                <Button x:Name="btnBrush" Click="BtnBrush_Click">
+                    <Image Width="30" Source="/Icons/brushblck.ico"/>
+                </Button>
+                <Button x:Name="btnEraser" Click="BtnEraser_Click">
+                    <Image Width="30" Source="/Icons/eraserr.ico"/>
+                </Button>
+                <Button x:Name ="Квадрат" Height="72.8" VerticalAlignment="Top" Width="75" Click="Square_Click">Sqr</Button>
+                <Button x:Name ="Прямоугольник" Height="72.8" VerticalAlignment="Top" Width="75" Click="Rectangle_Click">Rect</Button>
+                <Button x:Name ="Ромб" Height="72.8" VerticalAlignment="Top" Width="75" Click="Rhombus_Click">Rmb</Button>
+                <Button x:Name ="Эллипс" Height="72.8" VerticalAlignment="Top" Width="75" Click="Ellipse_Click">Ellipse</Button>
+                <Button x:Name ="LayerAdd" Height="72.8" VerticalAlignment="Top" Width="75">AddLayer</Button>
+                <Button x:Name ="LayerRem" Height="72.8" VerticalAlignment="Top" Width="75">RemLayer</Button>
+
+            </ToolBar>
+            <ToolBar Background="#5D5C61" Margin="0,0,-331,0" Height="52">
+                <colorPalette:ColorPicker x:Name="colorPicker" Width="80" Height="25" SelectedColor="Black" SelectedColorChanged="ColorPicker_SelectedColorChanged"  />
+                <colorPalette:ColorPicker  Margin="30,0,0,0" x:Name="colorPickerFilling" Width="75" Height="26" SelectedColor="Black" SelectedColorChanged="ColorPickerFilling_SelectedColorChanged"/>
+            </ToolBar>
+            <ToolBar Background="#5D5C61" Margin="255,0,-470,0" Height="68">
+                <StackPanel x:Name="spThickness" IsEnabled="False" Margin="0,0,0,0.2" Width="217">
+                    <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.9">Thickness</Label>
+                    <StackPanel Orientation="Horizontal">
+                        <Slider x:Name="slBrushThickness" Width="200" Minimum="1" Maximum="15" TickPlacement="Both" TickFrequency="1" IsSnapToTickEnabled="True" ValueChanged="SlBrushThickness_ValueChanged"/>
+                        <TextBox Name="tBrushThickness"  Width="20" Height="20" Text="{Binding ElementName=slBrushThickness,Path=Value}" IsEnabled="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+                    </StackPanel>
+                </StackPanel>
+            </ToolBar>
+        </ToolBarTray>
+        <Border BorderThickness="40" BorderBrush="#464544" >
+            <ScrollViewer x:Name="scrViewer" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <Canvas x:Name="cnvPaint" MouseLeftButtonDown="CnvPaint_MouseLeftButtonDown" MouseLeftButtonUp="CnvPaint_MouseLeftButtonUp" MouseMove="CnvPaint_MouseMove" Width="3000" Height="3000">
+
+                </Canvas>
+            </ScrollViewer>
+        </Border>
+        <Button Content="Button" Height="644.8" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Button" Height="644.8" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Button" Height="644.8" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Label" Height="644.8" VerticalAlignment="Top" Width="100"/>
+    </DockPanel>
+</Window>
+    

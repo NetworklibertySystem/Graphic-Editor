@@ -1,0 +1,51 @@
+﻿<Window x:Class="Graphic_editor.Startwindow"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:local="clr-namespace:Graphic_editor"
+ xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+ mc:Ignorable="d"
+ Title="MainWindow" Height="763.214" Width="500">
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <EventTrigger.Actions>
+                <BeginStoryboard>
+                <Storyboard>
+                <ThicknessAnimation
+                From="0"
+                To="200"
+                Duration="0:0:5"
+                Storyboard.TargetProperty
+                ="Margin"/>
+                </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+    </Window.Triggers>
+    <Grid Background="#CCCCFF" Margin="0,0,-160.4,-121.2">
+        <Border Margin="15" MaxWidth="600" Background="#CCCCFF" VerticalAlignment="Center" Padding="30" CornerRadius="15">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="50" Color="#FF696969" ShadowDepth="0"/>
+            </Border.Effect>
+            <StackPanel>
+                <TextBlock Text="Добро пожаловать!" FontSize="30" FontWeight="Bold" Margin="0 0 0 20"/>
+                <Grid Margin="-18,0,0,20">
+                    <Label HorizontalAlignment="Center" Content="Регистрация" FontSize="25" FontWeight="Bold" Canvas.Top="5" Width="162" Background="#282828" Margin="200,0,196,-0.4"/>
+
+                </Grid>
+                <TextBox x:Name="textBoxLogin" materialDesign:HintAssist.Hint="Логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0 5"/>
+                <TextBox x:Name="textBoxLoginShort" materialDesign:HintAssist.Hint="Тег в приложении(@'Ваш Логин')" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0 5"/>
+                <PasswordBox x:Name="passBox" materialDesign:HintAssist.Hint="Пароль" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Margin="0 5"/>
+                <PasswordBox x:Name="repeatPassBox" materialDesign:HintAssist.Hint="Повторите пароль" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Margin="0 5"/>
+                <Button x:Name ="Register" Content="Зарегистрироваться" Margin="0 20" Click="Button_Reg_Click"/>
+                <Grid Margin="0 0 0 20">
+                    <Label HorizontalAlignment="Center" Content="Авторизация" FontSize="25" FontWeight="Bold" Canvas.Top="5" Width="169" Background="#282828" Margin="180,0,191,-0.4"/>
+                </Grid>
+                <TextBox x:Name="textBoxLogin1" materialDesign:HintAssist.Hint="Логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0 5"/>
+                <PasswordBox x:Name="passBox1" materialDesign:HintAssist.Hint="Пароль" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Margin="0 5"/>
+                <Button x:Name="LoginEnter" Content="Войти" Margin="0 20" Click="LoginEnter_Click"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
